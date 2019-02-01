@@ -7,11 +7,18 @@ var uploadurl = imgurl;
 
 myApp.factory('NavigationService', function ($http) {
     var navigation = [{
-        name: "Users",
-        classis: "active",
-        sref: "#!/page/viewUser//",
-        icon: "phone"
-    }];
+            name: "Brand",
+            classis: "active",
+            sref: "#!/brandtable",
+            icon: "phone"
+        },
+        {
+            name: "Product",
+            classis: "active",
+            sref: "#!/producttable",
+            icon: "phone"
+        }
+    ];
 
     return {
         getnav: function () {
@@ -79,6 +86,49 @@ myApp.factory('NavigationService', function ($http) {
 
             });
         },
+
+
+
+        getBrands: function (callback) {
+            $http.post(adminurl + "brand/search").then(function (data) {
+                callback(data.data);
+            });
+        },
+        getProducts: function (callback) {
+            $http.post(adminurl + "product/search").then(function (data) {
+                callback(data.data);
+            });
+        },
+
+
+        createTable: function (formData, callback) {
+            $http.post(adminurl + 'brand/save', formData).then(function (data) {
+                data = data.data;
+                callback(data);
+
+            });
+        },
+        getOne: function (formData, callback) {
+            $http.post(adminurl + "brand/getOne", formData).then(function (data) {
+                callback(data);
+            });
+        },
+        getOneProduct: function (formData, callback) {
+            $http.post(adminurl + "product/getOne", formData).then(function (data) {
+                callback(data);
+            });
+        },
+
+
+
+        createproductTable: function (formData, callback) {
+            $http.post(adminurl + 'product/save', formData).then(function (data) {
+                data = data.data;
+                callback(data);
+
+            });
+        },
+
         searchCall: function (url, formData, i, callback) {
             $http.post(adminurl + url, formData).then(function (data) {
                 data = data.data;

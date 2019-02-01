@@ -1,0 +1,51 @@
+<div class="widget">
+    <div class="table-area">
+        <div class="widget-title">
+
+            <h2 style="text-align:center">Product Table</h2>
+            <div>
+                <a class="btn btn-info" ui-sref="editproducttable">Create</a>
+                <div class="pull-right"> <input type="text" ng-model="table.search" placeholder="search..."></div>
+                <hr>
+
+                <div>
+                    <form name="formData">
+                        <table class="table">
+                            <tr>
+                                <th>Sr. no</th>
+                                <th>Product Name</th>
+                                <th>Manufacturing</th>
+                                <th>Price</th>
+                                <th>Option</th>
+                            </tr>
+                            <tr ng-repeat="product in products|filter:table.search">
+                                <td>{{$index + 1}}</td>
+                                <td>
+                                    <div>{{product.Productname}}</div>
+                                </td>
+                                <td>
+                                    <div>{{product.manufacturing}}</div>
+                                </td>
+
+                                <td>
+                                    <div>{{product.price | currency}}</div>
+                                </td>
+                                <td>
+
+
+                                    <a class="btn btn-success" ui-sref="editproducttable" ng-click="editproducttable({id:product._id})">Edit</a>
+
+                                    <a class="btn btn-danger" ui-sref="producttable">Delete</a>
+
+                                </td>
+
+
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

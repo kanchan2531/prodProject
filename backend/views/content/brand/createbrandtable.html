@@ -1,0 +1,31 @@
+<form>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="from-group">
+                <label>
+                    brand name
+                </label>
+                <input type="text" name="brandname" placeholder="Enter Brandname" ng-model="brand.name" class="form-control" required="">
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="from-group">
+                <label>
+                        Description
+                    </label>
+                <textarea class="form-control" name="description" cols="100" rows="4" placeholder="Enter Description" ng-model="brand.description"></textarea>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="text-center mt20 odd-even-button">
+
+        <a class="btn btn-success" ui-sref="brandtable" ng-click="saveData()">Save</a>
+        <button type="button" class="btn btn-danger">Cancel</button>
+    </div>
+</form>

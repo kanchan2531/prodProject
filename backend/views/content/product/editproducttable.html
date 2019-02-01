@@ -1,0 +1,65 @@
+<div class="widget">
+    <div class="table-area">
+        <div class="widget-title">
+            <h3>Edit table</h3>
+            <form name="formData">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="from-group">
+                            <label>
+                        Product name
+                    </label>
+                            <input type="text" name="productname" ng-model="product.Productname" placeholder="Enter productname" class="form-control"
+                                required="">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="from-group">
+                            <label>
+                    Manufacturing
+                    </label><br>
+                            <input type="date" name="date" ng-model="product.manufacturing">
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="from-group">
+                            <label>
+                        Price
+                        </label><br>
+                            <input type="number" name="price" ng-model="product.price">
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="from-group">
+                            <label>
+                            Description
+                        </label>
+                            <textarea class="form-control" name="description" cols="100" rows="4" placeholder="Enter Description" ng-model="product.description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="text-center mt20 odd-even-button">
+
+
+                    <a class="btn btn-success" ui-sref="producttable" ng-click="saveData()">Save</a>
+                    <a class="btn btn-danger" ui-sref="producttable">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="widget">
+    <div class="table-area">
+        <div class="widget-title">
+            <div>
+                <h2 style="text-align:center">Brand Table</h2>
+                <a class="btn btn-primary" ui-sref="editbrand" ng-click="saveData()">Create</a>
+                <div class="pull-right"><input type="text" ng-model="table.search.brand.name" placeholder="search..."></div>
+                <hr>
+
+                <div>
+                    <form name="formData">
+                        <table class="table">
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>Brand Name </th>
+                                <th>Option</th>
+                            </tr>
+                            <tr ng-repeat="brand in brands|filter:table.search.brand.name">
+                                <td>{{$index + 1}}</td>
+                                <td>
+                                    <div>{{brand.name}}</div>
+
+                                </td>
+                                <td>
+
+                                    <a class="btn btn-success" ui-sref="createBrand({id:brand._id})">Edit</a>
+                                    <a class="btn btn-danger" ui-sref="#">Delete</a>
+
+                                </td>
+
+
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

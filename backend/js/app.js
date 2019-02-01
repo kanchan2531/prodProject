@@ -86,8 +86,33 @@ myApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locat
             url: "/jagz",
             templateUrl: "views/jagz.html",
             controller: 'JagzCtrl'
-        });
+        })
+        .state('brandtable', {
+            url: "/brandtable",
+            templateUrl: "views/template.html",
+            controller: 'brandtableCtrl'
+        })
+        .state('editbrand', {
+            url: "/editbrand",
+            templateUrl: "views/template.html",
+            controller: 'brandedittableCtrl'
+        })
+        .state('createBrand', {
+            url: "/editbrand/:id",
+            templateUrl: "views/template.html",
+            controller: 'createbrandtableCtrl'
+        })
+        .state('producttable', {
+            url: "/producttable",
+            templateUrl: "views/template.html",
+            controller: 'producttableCtrl'
+        })
 
+        .state('editproducttable', {
+            url: "/editproducttable/:id",
+            templateUrl: "views/template.html",
+            controller: 'productedittableCtrl'
+        });
     $urlRouterProvider.otherwise("/dashboard");
     $locationProvider.html5Mode(isproduction);
 });
