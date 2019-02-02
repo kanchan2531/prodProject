@@ -108,18 +108,6 @@ myApp.factory('NavigationService', function ($http) {
 
             });
         },
-        getOne: function (formData, callback) {
-            $http.post(adminurl + "brand/getOne", formData).then(function (data) {
-                callback(data);
-            });
-        },
-        getOneProduct: function (formData, callback) {
-            $http.post(adminurl + "product/getOne", formData).then(function (data) {
-                callback(data);
-            });
-        },
-
-
 
         createproductTable: function (formData, callback) {
             $http.post(adminurl + 'product/save', formData).then(function (data) {
@@ -128,6 +116,46 @@ myApp.factory('NavigationService', function ($http) {
 
             });
         },
+
+
+
+
+        getOnedelete: function (formData, callback) {
+            $http.post(adminurl + 'brand/delete', formData).then(function (data) {
+                data = data.data;
+                callback(data);
+
+            });
+        },
+
+        getproductDelete: function (formData, callback) {
+            $http.post(adminurl + 'product/delete', formData).then(function (data) {
+                data = data.data;
+                callback(data);
+
+            });
+        },
+
+
+
+
+        getOne: function (formData, callback) {
+            $http.post(adminurl + "brand/getOne", formData).then(function (data) {
+                callback(data.data);
+            });
+        },
+
+
+
+        getOneProduct: function (formData, callback) {
+            $http.post(adminurl + "product/getOne", formData).then(function (data) {
+                callback(data);
+            });
+        },
+
+
+
+
 
         searchCall: function (url, formData, i, callback) {
             $http.post(adminurl + url, formData).then(function (data) {

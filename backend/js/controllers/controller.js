@@ -14,29 +14,55 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             //$state.go("login");
         }
     })
-    .controller('brandtableCtrl', function ($scope, TemplateService, NavigationService, $timeout, $state) {
+    .controller('brandtableCtrl', function ($scope, TemplateService, NavigationService, $timeout, $state, $stateParams, toastr) {
         $scope.template = TemplateService.changecontent("brand/brandtable");
         $scope.menutitle = NavigationService.makeactive("Brand Table");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-        $scope.brands = [];
-        NavigationService.getBrands(function (data) {
-            $scope.brands = data.data.results;
-        });
+        // $scope.brands = [];
+        $scope.brand = {};
+        $scope.reloadBrands = function () {
+            NavigationService.getBrands(function (data) {
+                $scope.brands = data.data.results;
+            });
+        };
+
+        $scope.reloadBrands();
+
+
+        $scope.delete = function (id) {
+            NavigationService.getOnedelete({
+                "_id": id
+            }, function (data) {
+                if (data.value) {
+                    toastr.success("Brand Deleted successfully.");
+                    $scope.reloadBrands();
+                } else {
+                    toastr.error("Error in detelting record");
+                }
+
+                console.log($stateParams.id);
+            });
+        };
     })
+
+
+
+
     .controller('brandedittableCtrl', function ($scope, TemplateService, NavigationService, $timeout, $state, $stateParams) {
         $scope.template = TemplateService.changecontent("brand/editbrand");
         $scope.menutitle = NavigationService.makeactive("Brand Table");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+
         $scope.brand = {};
 
 
-        $scope.saveData = function () {
-            // console.log($scope.brand);
-            NavigationService.createTable($scope.brand, function (data) {
 
-                // console.log(data);
+        $scope.saveData = function () {
+            console.log($scope.brand);
+            NavigationService.createTable($scope.brand, function (data) {
+                console.log(data);
 
             });
         };
@@ -53,15 +79,15 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         NavigationService.getOne({
             _id: $stateParams.id
         }, function (data) {
-            $scope.brand = data.data.data;
+            $scope.brand = data.data;
             console.log('$scope.brand', $scope.brand);
         });
 
         $scope.saveData = function () {
-            // console.log($scope.brand);
+            console.log($scope.brand);
             NavigationService.createTable($scope.brand, function (data) {
 
-                // console.log(data);
+                console.log(data);
 
             });
         };
@@ -69,43 +95,62 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
     })
 
 
-    .controller('producttableCtrl', function ($scope, TemplateService, NavigationService, $timeout, $state) {
+    .controller('producttableCtrl', function ($scope, TemplateService, NavigationService, $timeout, toastr) {
         $scope.template = TemplateService.changecontent("product/producttable");
         $scope.menutitle = NavigationService.makeactive("ProductTable");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
 
-        $scope.products = [];
-        NavigationService.getProducts(function (data) {
-            $scope.products = data.data.results;
-        });
+        $scope.product = {};
+        $scope.reloadProducts = function () {
+            NavigationService.getProducts(function (data) {
+                $scope.products = data.data.results;
+            });
+        };
+        $scope.reloadProducts();
+        $scope.delete = function (id) {
+            NavigationService.getproductDelete({
+                "_id": id
+            }, function (data) {
+                if (data.value) {
+                    toastr.success("Products Deleted successfully.");
+
+                    $scope.reloadProducts();
+                } else {
+                    toastr.error("Error in detelting record");
+                }
+
+
+            });
+        };
     })
-
-
 
     .controller('productedittableCtrl', function ($scope, TemplateService, NavigationService, $timeout, $state, $stateParams) {
         $scope.template = TemplateService.changecontent("product/editproducttable");
         $scope.menutitle = NavigationService.makeactive("Product Table");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-
         $scope.product = {};
 
-        console.log($stateParams.id);
+        if ($stateParams.id) {
 
-        NavigationService.getOneProduct({
-            _id: $stateParams.id
-        }, function (data) {
-            $scope.product = data.data.data;
-            console.log('$scope.product', $scope.product);
-        });
+            NavigationService.getOneProduct({
+                _id: $stateParams.id
+            }, function (data) {
+                $scope.product = data.data.data;
+                console.log('$scope.product', $scope.product);
+            });
 
+        }
         $scope.saveData = function () {
             console.log($scope.product);
             NavigationService.createproductTable($scope.product, function (data) {
+
+                $scope.product.manufacturing = new Date($scope.product.manufacturing);
                 console.log(data);
 
             });
+
         };
 
     })
