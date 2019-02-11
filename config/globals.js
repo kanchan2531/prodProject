@@ -68,7 +68,7 @@ global.storageBucket = "wohlig";
 mongoose.Promise = global.Promise;
 global.mongourl = "mongodb://localhost:27017/" + database;
 mongoose.connect(mongourl, {
-    useMongoClient: true
+    useNewUrlParser: true
 }, function (err, db) {});
 
 

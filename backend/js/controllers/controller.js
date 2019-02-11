@@ -132,12 +132,24 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
         $scope.navigation = NavigationService.getnav();
         $scope.product = {};
 
+
+        NavigationService.getBrands(function (data) {
+            console.log(data.data.results);
+            $scope.brands = data.data.results;
+        });
+        $scope.saveBrand = function (brand) {
+            console.log(brand);
+            $scope.product.brands = brand._id;
+        };
+
+
         if ($stateParams.id) {
 
             NavigationService.getOneProduct({
                 _id: $stateParams.id
             }, function (data) {
                 $scope.product = data.data.data;
+                $scope.product.manufacturing = new Date($scope.product.manufacturing);
                 console.log('$scope.product', $scope.product);
             });
 
@@ -146,7 +158,7 @@ myApp.controller('DashboardCtrl', function ($scope, TemplateService, NavigationS
             console.log($scope.product);
             NavigationService.createproductTable($scope.product, function (data) {
 
-                $scope.product.manufacturing = new Date($scope.product.manufacturing);
+
                 console.log(data);
 
             });

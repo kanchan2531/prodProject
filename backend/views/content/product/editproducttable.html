@@ -24,7 +24,7 @@
                             <label>
                     Manufacturing
                     </label><br>
-                            <input type="date" name="date" ng-model="product.manufacturing">
+                            <input type="date" name="date" class="form-control" ng-model="product.manufacturing">
                         </div>
 
                     </div>
@@ -36,7 +36,7 @@
                             <label>
                         Price
                         </label><br>
-                            <input type="number" name="price" ng-model="product.price">
+                            <input type="number" class="form-control" name="price" ng-model="product.price">
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,21 @@
                             <textarea class="form-control" name="description" cols="100" rows="4" placeholder="Enter Description" ng-model="product.description"></textarea>
                         </div>
                     </div>
+                </div><br>
+
+
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="from-group">
+                            <select class="form-control" ng-model="product.brands">
+                      <option ng-repeat="brand in brands" value="{{brand._id}}">{{brand.name}}</option>
+                        </select>
+                        </div>
+                    </div>
                 </div>
+
+
                 <hr>
                 <div class="text-center mt20 odd-even-button">
 

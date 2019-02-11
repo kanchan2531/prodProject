@@ -16,6 +16,7 @@
                                 <th>Product Name</th>
                                 <th>Manufacturing</th>
                                 <th>Price</th>
+                                <th>Brand</th>
                                 <th>Option</th>
                             </tr>
                             <tr ng-repeat="product in products|filter:table.search">
@@ -31,6 +32,9 @@
                                     <div>{{product.price | currency}}</div>
                                 </td>
                                 <td>
+                                    <div>{{product.brands.name}}</div>
+                                </td>
+                                <td>
 
 
                                     <a class="btn btn-success" ui-sref="editproducttable({id:product._id})">Edit</a>
@@ -42,6 +46,7 @@
 
                             </tr>
                         </table>
+                        <
                     </form>
                 </div>
             </div>
